@@ -23,30 +23,42 @@ function App() {
   const [embedUrl, setEmbedUrl] = useState(null);
   const [error, setError] = useState("");
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const url = getEmbedUrl(input.trim());
+  function handleChange(value) {
+    setInput(value);
+    const url = getEmbedUrl(value.trim());
     if (url) {
       setEmbedUrl(url);
       setError("");
     } else {
-      setError("Please enter a valid YouTube URL");
+      setEmbedUrl(null);
+      setError(value.trim() ? "Please enter a valid YouTube URL" : "");
+    }
+  }
+
+  async function handlePaste() {
+    try {
+      const text = await navigator.clipboard.readText();
+      handleChange(text);
+    } catch {
+      setError("Clipboard access denied");
     }
   }
 
   return (
     <div className="container">
       <h1>YouTube Embed</h1>
-      <form onSubmit={handleSubmit} className="url-form">
+      <div className="url-form">
         <input
           type="text"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => handleChange(e.target.value)}
           placeholder="https://www.youtube.com/watch?v=..."
           className="url-input"
         />
-        <button type="submit">Embed</button>
-      </form>
+        <button type="button" onClick={handlePaste}>
+          Paste
+        </button>
+      </div>
       {error && <p className="error">{error}</p>}
       {embedUrl && (
         <div className="embed-wrapper">
