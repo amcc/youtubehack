@@ -63,6 +63,7 @@ function App() {
       {embedUrl && (
         <div className="embed-wrapper">
           <iframe
+            key={embedUrl}
             src={embedUrl}
             title="YouTube video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
