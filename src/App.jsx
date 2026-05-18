@@ -55,15 +55,17 @@ function App() {
 
   return (
     <div className="container">
-      <h1>YouTube Embed</h1>
-      <div className="url-form">
-        <input
-          type="text"
-          placeholder="Enter YouTube URL"
-          value={input}
-          onChange={(e) => handleChange(e.target.value)}
-        />
-        <button onClick={handlePaste}>Paste</button>
+      <div className="header-form-row">
+        <h1>YouTube Embed</h1>
+        <div className="url-form">
+          <input
+            type="text"
+            placeholder="Enter YouTube URL"
+            value={input}
+            onChange={(e) => handleChange(e.target.value)}
+          />
+          <button onClick={handlePaste}>Paste</button>
+        </div>
       </div>
       {error && <p className="error">{error}</p>}
       {embedUrl && (

@@ -1,3 +1,28 @@
+/* Inline title, input, and button on wide screens */
+.header-form-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 700px) {
+  .header-form-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+  .header-form-row h1 {
+    margin-bottom: 0;
+    margin-right: 1rem;
+    white-space: nowrap;
+  }
+  .url-form {
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
 /* Responsive YouTube embed */
 .embed-wrapper {
   position: relative;
