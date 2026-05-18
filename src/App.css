@@ -1,4 +1,13 @@
-/* Inline title, input, and button on wide screens */
+:root {
+  --text-colour: #787878;
+  --button-color: rgb(94, 94, 94);
+  --button-hover-color: rgb(169, 169, 169);
+}
+h1 {
+  margin: 0;
+  color: var(--text-colour);
+  font-weight: normal;
+}
 .header-form-row {
   display: flex;
   flex-direction: column;
@@ -10,7 +19,7 @@
 @media (min-width: 700px) {
   .header-form-row {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     gap: 2rem;
   }
   .header-form-row h1 {
@@ -42,27 +51,25 @@
 }
 .container {
   width: 90vw;
-  margin: 3rem auto;
+  max-width: 1600px;
+  margin: 1.5rem auto;
   padding: 0 1rem;
   font-family: sans-serif;
-}
-
-h1 {
-  margin-bottom: 1.5rem;
 }
 
 .url-form {
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 
 .url-input {
   flex: 1;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--text-colour);
   border-radius: 4px;
+  color: var(--text-colour);
 }
 
 button {
@@ -71,12 +78,12 @@ button {
   cursor: pointer;
   border: none;
   border-radius: 4px;
-  background: #e00;
+  background: var(--button-color);
   color: #fff;
 }
 
 button:hover {
-  background: #c00;
+  background: var(--button-hover-color);
 }
 
 .error {

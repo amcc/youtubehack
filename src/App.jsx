@@ -60,6 +60,7 @@ function App() {
         <div className="url-form">
           <input
             type="text"
+            className="url-input"
             placeholder="Enter YouTube URL"
             value={input}
             onChange={(e) => handleChange(e.target.value)}
