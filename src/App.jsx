@@ -56,7 +56,7 @@ function App() {
   return (
     <div className="container">
       <div className="header-form-row">
-        <h1>YouTube Embed</h1>
+        <h1>minVid</h1>
         <div className="url-form">
           <input
             type="text"
