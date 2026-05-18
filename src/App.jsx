@@ -67,10 +67,8 @@ function App() {
       </div>
       {error && <p className="error">{error}</p>}
       {embedUrl && (
-        <div className="video-container">
+        <div className="embed-wrapper">
           <iframe
-            width="560"
-            height="315"
             src={embedUrl}
             title="YouTube video player"
             frameBorder="0"
