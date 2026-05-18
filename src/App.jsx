@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function getEmbedUrl(input) {
@@ -22,6 +22,15 @@ function App() {
   const [input, setInput] = useState("");
   const [embedUrl, setEmbedUrl] = useState(null);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    // Parse URL parameters on load
+    const params = new URLSearchParams(window.location.search);
+    const youtubeUrl = params.get("youtube");
+    if (youtubeUrl) {
+      handleChange(youtubeUrl);
+    }
+  }, []);
 
   function handleChange(value) {
     setInput(value);
@@ -50,25 +59,24 @@ function App() {
       <div className="url-form">
         <input
           type="text"
+          placeholder="Enter YouTube URL"
           value={input}
           onChange={(e) => handleChange(e.target.value)}
-          placeholder="https://www.youtube.com/watch?v=..."
-          className="url-input"
         />
-        <button type="button" onClick={handlePaste}>
-          Paste
-        </button>
+        <button onClick={handlePaste}>Paste</button>
       </div>
       {error && <p className="error">{error}</p>}
       {embedUrl && (
-        <div className="embed-wrapper">
+        <div className="video-container">
           <iframe
-            key={embedUrl}
+            width="560"
+            height="315"
             src={embedUrl}
-            title="YouTube video"
+            title="YouTube video player"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-          />
+          ></iframe>
         </div>
       )}
     </div>
