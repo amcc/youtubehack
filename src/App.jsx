@@ -2,8 +2,14 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function getEmbedUrl(input) {
+  const trimmedInput = input.trim();
+
+  if (/^[A-Za-z0-9_-]{11}$/.test(trimmedInput)) {
+    return `https://www.youtube-nocookie.com/embed/${trimmedInput}?rel=0&origin=${encodeURIComponent(window.location.origin)}`;
+  }
+
   try {
-    const url = new URL(input);
+    const url = new URL(trimmedInput);
     let videoId = null;
 
     const isYouTubeHost =
