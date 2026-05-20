@@ -5,11 +5,28 @@ function getEmbedUrl(input) {
   try {
     const url = new URL(input);
     let videoId = null;
+
+    const isYouTubeHost =
+      url.hostname === "youtu.be" ||
+      url.hostname.endsWith("youtube.com") ||
+      url.hostname.endsWith("youtube-nocookie.com");
+
+    if (!isYouTubeHost) {
+      return null;
+    }
+
     if (url.hostname === "youtu.be") {
       videoId = url.pathname.slice(1);
-    } else if (url.hostname.includes("youtube.com")) {
+    } else if (
+      url.pathname.startsWith("/shorts/") ||
+      url.pathname.startsWith("/embed/") ||
+      url.pathname.startsWith("/live/")
+    ) {
+      videoId = url.pathname.split("/")[2] || null;
+    } else {
       videoId = url.searchParams.get("v");
     }
+
     if (videoId)
       return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&origin=${encodeURIComponent(window.location.origin)}`;
   } catch {
